@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Fundamentals Project</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f4f4;
+text-align:center;
+padding:20px;
+}
+
+h1{
+color:#333;
+}
+
+.container{
+background:white;
+padding:20px;
+margin:20px auto;
+width:400px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input{
+padding:10px;
+margin:5px;
+width:80%;
+}
+
+button{
+padding:10px 15px;
+margin:5px;
+cursor:pointer;
+border:none;
+background:#28a745;
+color:white;
+border-radius:5px;
+}
+
+button:hover{
+background:#218838;
+}
+
+table{
+margin:auto;
+margin-top:20px;
+border-collapse:collapse;
+width:90%;
+}
+
+th, td{
+border:1px solid #ccc;
+padding:10px;
+}
+
+#result{
+font-size:18px;
+margin-top:10px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>JavaScript Fundamentals Applications</h1>
+
+<!-- Calculator Section -->
+
+<div class="container">
+
+<h2>Interactive Calculator</h2>
+
+<input type="number" id="num1" placeholder="First Number">
+<input type="number" id="num2" placeholder="Second Number">
+
+<br>
+
+<button onclick="add()">Add</button>
+<button onclick="subtract()">Subtract</button>
+<button onclick="multiply()">Multiply</button>
+<button onclick="divide()">Divide</button>
+
+<div id="result"></div>
+
+</div>
+
+<!-- Student Grade Tracker -->
+
+<div class="container">
+
+<h2>Student Grade Tracker</h2>
+
+<input type="text" id="name" placeholder="Student Name">
+<input type="number" id="grade" placeholder="Student Grade">
+
+<br>
+
+<button onclick="addStudent()">Add Student</button>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Grade</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+/* Calculator Functions */
+
+function add(){
+let a = Number(document.getElementById("num1").value);
+let b = Number(document.getElementById("num2").value);
+document.getElementById("result").innerText = "Result: " + (a + b);
+}
+
+function subtract(){
+let a = Number(document.getElementById("num1").value);
+let b = Number(document.getElementById("num2").value);
+document.getElementById("result").innerText = "Result: " + (a - b);
+}
+
+function multiply(){
+let a = Number(document.getElementById("num1").value);
+let b = Number(document.getElementById("num2").value);
+document.getElementById("result").innerText = "Result: " + (a * b);
+}
+
+function divide(){
+
+let a = Number(document.getElementById("num1").value);
+let b = Number(document.getElementById("num2").value);
+
+if(b === 0){
+document.getElementById("result").innerText = "Cannot divide by zero";
+}
+else{
+document.getElementById("result").innerText = "Result: " + (a / b);
+}
+
+}
+
+/* Student Grade Tracker */
+
+let students = [];
+
+function addStudent(){
+
+let name = document.getElementById("name").value;
+let grade = Number(document.getElementById("grade").value);
+
+let status;
+
+if(grade >= 50){
+status = "Pass";
+}else{
+status = "Fail";
+}
+
+let student = {
+name: name,
+grade: grade,
+status: status
+};
+
+students.push(student);
+
+displayStudents();
+
+}
+
+function displayStudents(){
+
+let table = document.getElementById("studentTable");
+
+table.innerHTML = "";
+
+for(let i = 0; i < students.length; i++){
+
+let row = `
+<tr>
+<td>${students[i].name}</td>
+<td>${students[i].grade}</td>
+<td>${students[i].status}</td>
+</tr>
+`;
+
+table.innerHTML += row;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
